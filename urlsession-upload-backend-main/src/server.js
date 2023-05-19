@@ -5,15 +5,12 @@ var axios = require('axios');
 const app = express();
 app.use(bodyParser.json());
 
-// Define your expected security key
 const expectedSecurityKey = 'YOUR_EXPECTED_SECURITY_KEY';
 
-// Define a route to handle the webhook notifications
 app.post('/vidyard-webhook', (req, res) => {
   const event = req.body;
   const receivedSecurityKey = req.headers['x-vidyard-signature'];
 
-  // Verify the security key
   if (receivedSecurityKey === expectedSecurityKey) {
   
     var data = JSON.stringify({
